@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Toilet</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="{{ url_for("static", filename="ws.js") }}"></script>
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+        <link href='{{ url_for("static", filename="style.css") }}' rel='stylesheet' type='text/css'>
+
+    </head>
+    <body style="background-color: black;">
+        <div id='frame'>
+			<div id='updated'>UPDATED</div>
+            <div id='available'>The bathroom is available!</div>
+			<div id='occupied'>The bathroom is occupied!</div>
+            <div id='controls' style="color: #00F000">
+                <p>"The status field is made to simuate the lock in the door"</p>
+				Status: <select id="status">
+				<option value="available" style="background-color:green;">Available</option>
+				<option value="occupied" selected="selected" style="background-color:red;">Occupied</option>
+				<option value="other">enh...something else</option>
+				</select><br/>
+			</div>
+            <div id='value'    class='data'></div>
+            <div id='interval' class='interval'>Since last change in bathroom status</div>
+            <div id='contents' class='data'></div>
+        </div>
+        <script type="text/javascript">
+            establish_websocket({{port}});
+        </script>
+    </body>
+</html>
